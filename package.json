@@ -1,0 +1,49 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cloudinary": "^1.37.3",
+    "cypress": "^12.9.0",
+    "dotenv": "^16.3.1",
+    "expo": "^48.0.19",
+    "express": "^4.18.2",
+    "maven": "^5.0.0",
+    "mongodb": "^5.7.0",
+    "mongoose": "^7.3.4",
+    "react": "18.2.0",
+    "react-native": "0.71.3",
+    "twilio": "^4.13.0"
+  },
+  "devDependencies": {
+    "@types/react": "~18.0.27",
+    "@types/react-native": "^0.72.2",
+    "chai": "^4.3.7",
+    "chai-http": "^4.4.0",
+    "mocha": "^10.2.0",
+    "typescript": "^4.9.4"
+  },
+  "name": "her_app_ackend",
+  "version": "1.0.0",
+  "description": "Her app backend services, database calls",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon app.js",
+    "test": "mocha --timeout 10000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suprise079/HerAppBacked.git"
+  },
+  "keywords": [
+    "database",
+    "api",
+    "calls",
+    "processing",
+    "server"
+  ],
+  "author": "NS Ngoveni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/suprise079/HerAppBacked/issues"
+  },
+  "homepage": "https://github.com/suprise079/HerAppBacked#readme"
+}
