@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const BlogSchema = new Schema({
+
+module.exports = mongoose.model("Blog",new Schema({
   title: String,
   content: String,
   author: String,
@@ -12,6 +13,4 @@ const BlogSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-});
-
-module.exports = mongoose.model("Blog", BlogSchema);
+}));
