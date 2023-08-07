@@ -1,25 +1,40 @@
 const RecipesModel = require("../models/Recipes");
 
-exports.getAllRecipess = async () => {
+exports.getAllRecipes = async () => {
   return await RecipesModel.find();
 };
 
-exports.createRecipes = async (recipes) => {
+exports.createRecipe = async (recipes) => {
   return await RecipesModel.create(recipes);
 };
-exports.getRecipesById = async (id) => {
+exports.getRecipeById = async (id) => {
   return await RecipesModel.findById(id);
 };
 
-exports.updateRecipes = async (id, recipes) => {
+exports.updateRecipe = async (id, recipes) => {
   return await RecipesModel.findByIdAndUpdate(id, recipes);
 };
 
-exports.deleteRecipes = async (id) => {
+exports.deleteRecipe = async (id) => {
   return await RecipesModel.findByIdAndDelete(id);
 };
 
-exports.getRecipesByCategory = async (category) => {
-  category = category.toLowerCase();
-  return await RecipesModel.find({ category: category });
+exports.getRecipeByCategory = async (category) => {
+  // category = category.toLowerCase();
+  return await RecipesModel.find({
+    $or: [
+      { category: { $regex: keyword, $options: "i" } },
+      { foodType: { $regex: keyword, $options: "i" } },
+    ],
+  });
+};
+
+exports.searchRecipe = async (keyword) => {
+  return await RecipesModel.find({
+    $or: [
+      { recipeName: { $regex: keyword, $options: "i" } },
+      { category: { $regex: keyword, $options: "i" } },
+      { description: { $regex: keyword, $options: "i" } },
+    ],
+  });
 };

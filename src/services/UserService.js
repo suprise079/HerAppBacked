@@ -9,10 +9,7 @@ exports.createUser = async (userInfo) => {
 };
 
 exports.getUserAuth = async (username, password) => {
-  return await UserModel.findOne(
-    { email: username, password: password },
-    { email: 1, password: 1, _id: 0 }
-  );
+  return await UserModel.findOne({ email: username, password: password });
 };
 
 exports.updateUser = (id, userInfo) => {

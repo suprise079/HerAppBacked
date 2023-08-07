@@ -56,9 +56,20 @@ exports.deleteRecipe = async (req, res) => {
 
 exports.getRecipeByCategory = async (req, res) => {
   try {
-    const recipes = await recipeServices.getRecipeByCategory(req.params.category);
+    const recipes = await recipeServices.getRecipeByCategory(
+      req.params.category
+    );
     res.status(200).json(recipes);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 };
+
+exports.searchRecipe = async (req, res) => {
+  try {
+    const recipes = await recipeServices.searchRecipe(req.params.keyword);
+    res.status(200).json(recipes);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+}

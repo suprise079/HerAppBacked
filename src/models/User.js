@@ -13,19 +13,23 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
+      unique: true,
       required: [true, "Email is required"],
     },
     password: {
       type: String,
       required: [true, "Password is required"],
     },
-    gender: String,
-    age: Number,
-    bio: String,
     avatar: {
       type: String,
       default:
         "https://st2.depositphotos.com/2071131/11354/i/450/depositphotos_113542824-stock-photo-small-green-leaves.jpg",
+    },
+    gender: String,
+    age: Number,
+    bio: {
+      type: String,
+      default: "I am a new user",
     },
     createdAt: {
       type: Date,
@@ -33,49 +37,42 @@ const userSchema = new Schema(
     },
     updatedAt: Date,
     bmi: {
-      type: Number,
-      default: 0,
-    },
-    height: {
-      type: Number,
-      default: 0,
-    },
-    weight: {
-      type: Number,
-      default: 0,
-    },
-    water: {
-      type: Number,
-      default: 0,
+      count: {
+        type: Number,
+        default: 0,
+      },
+      state: {
+        type: String,
+        default: "Normal",
+      },
     },
     calories: {
-      type: Number,
-      default: 0,
+      carbohydrates: { type: Number, default: 0 },
+      proteins: { type: Number, default: 0 },
+      fats: { type: Number, default: 0 },
+      total: { type: Number, default: 0 },
     },
-    cooking: {
-      type: Number,
-      default: 0,
-    },
+    heart: { type: Number, default: 0 },
+    height: { type: Number, default: 0 },
+    weight: { type: Number, default: 0 },
+    water: { type: Number, default: 0 },
+    steps: { type: Number, default: 0 },
     goals: {
       water: {
         type: Number,
-        default: 0,
+        default: 8,
       },
       calories: {
-        type: Number,
-        default: 0,
+        carbohydrates: { type: Number, default: 250 },
+        proteins: { type: Number, default: 50 },
+        fats: { type: Number, default: 67 },
+        total: { type: Number, default: 2000 },
       },
-      bmi: {
+      bmi: { type: Number, default: 0 },
+      weight: { type: Number, default: 0 },
+      steps: {
         type: Number,
-        default: 0,
-      },
-      weight: {
-        type: Number,
-        default: 0,
-      },
-      cooking: {
-        type: Number,
-        default: 0,
+        default: 1000,
       },
     },
     rewards: {

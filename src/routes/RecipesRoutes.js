@@ -7,10 +7,12 @@ const {
   updateRecipe,
   deleteRecipe,
   getRecipeByCategory,
-} = require("../controllers/RecipeController.js");
+  searchRecipe,
+} = require("../controllers/RecipesController.js");
 
 router.route("/").get(getAllRecipes).post(createRecipe);
 router.route("/:id").get(getRecipeById).put(updateRecipe).delete(deleteRecipe);
 router.route("/category/:category").get(getRecipeByCategory);
+router.route("/search/:keyword").get(searchRecipe);
 
 module.exports = router;
