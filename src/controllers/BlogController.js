@@ -60,3 +60,12 @@ exports.getBlogByCategory = async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 };
+
+exports.searchBlog = async (req, res) => {
+  try {
+    const blogs = await blogServices.searchBlog(req.params.keyword);
+    res.status(200).json(blogs);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+}

@@ -23,3 +23,13 @@ exports.getBlogByCategory = async (category) => {
   category = category.toLowerCase();
   return await BlogModel.find({ category: category });
 };
+
+exports.searchBlog = async (keyword) => {
+  return await BlogModel.find({
+    $or: [
+      { title: { $regex: keyword, $options: "i" } },
+      { category: { $regex: keyword, $options: "i" } },
+      { content: { $regex: keyword, $options: "i" } },
+    ],
+  });
+};

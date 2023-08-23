@@ -45,36 +45,45 @@ const userSchema = new Schema(
         type: String,
         default: "Normal",
       },
+      goals: {
+        count: { type: Number, default: 23 },
+        state: { type: String, default: "Normal" },
+      },
     },
     calories: {
       carbohydrates: { type: Number, default: 0 },
       proteins: { type: Number, default: 0 },
       fats: { type: Number, default: 0 },
       total: { type: Number, default: 0 },
-    },
-    heart: { type: Number, default: 0 },
-    height: { type: Number, default: 0 },
-    weight: { type: Number, default: 0 },
-    water: { type: Number, default: 0 },
-    steps: { type: Number, default: 0 },
-    goals: {
-      water: {
-        type: Number,
-        default: 8,
-      },
-      calories: {
+      goals: {
         carbohydrates: { type: Number, default: 250 },
         proteins: { type: Number, default: 50 },
         fats: { type: Number, default: 67 },
         total: { type: Number, default: 2000 },
       },
-      bmi: { type: Number, default: 0 },
+    },
+    heart: { type: Number, default: 0 },
+    height: { type: Number, default: 0 },
+    weight: { 
       weight: { type: Number, default: 0 },
-      steps: {
-        type: Number,
-        default: 1000,
+      goals: { type: Number, default: 0 },
+     },
+    water: {
+      water: { type: Number, default: 0 },
+      coke: { type: Number, default: 0 },
+      coffee: { type: Number, default: 0 },
+      juice: { type: Number, default: 0 },
+      goals: {
+        water: { type: Number, default: 8 },
+        coke: { type: Number, default: 0 },
+        coffee: { type: Number, default: 0 },
+        juice: { type: Number, default: 0 },
       },
     },
+    steps: { 
+      steps: { type: Number, default: 0 },
+      goals: { type: Number, default: 1000 },
+     },
     rewards: {
       points: {
         type: Number,

@@ -19,7 +19,7 @@ exports.deleteRecipe = async (id) => {
   return await RecipesModel.findByIdAndDelete(id);
 };
 
-exports.getRecipeByCategory = async (category) => {
+exports.getRecipeByCategory = async (keyword) => {
   // category = category.toLowerCase();
   return await RecipesModel.find({
     $or: [

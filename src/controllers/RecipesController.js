@@ -13,10 +13,7 @@ exports.createRecipe = async (req, res) => {
   try {
     const recipeInfo = req.body;
     // let result = await uploadImage(recipeInfo.image.path);
-    const recipe = await recipeServices.createRecipe({
-      ...recipeInfo,
-      image: recipeInfo.image.path,
-    });
+    const recipe = await recipeServices.createRecipe(recipeInfo);
     res.status(201).json(recipe);
   } catch (e) {
     res.status(500).json({ Error: e.message });
@@ -72,4 +69,4 @@ exports.searchRecipe = async (req, res) => {
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
-}
+};
