@@ -4,14 +4,18 @@ const Schema = mongoose.Schema;
 module.exports = mongoose.model(
   "Recipes",
   new Schema({
-    recipeName: String,
-    userId: String,
+    recipeName: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    author: String,
     image: String,
     description: String,
     calories: Number,
     category: String,
-    ingredients: {},
-    preparation: {},
+    ingredients: [],
+    preparation: [],
     time: String,
     foodType: String,
     images: [],

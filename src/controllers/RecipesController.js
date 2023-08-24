@@ -32,10 +32,7 @@ exports.getRecipeById = async (req, res) => {
 exports.updateRecipe = async (req, res) => {
   try {
     const recipeInfo = req.body;
-    const recipe = await recipeServices.updateRecipe(req.params.id, {
-      ...recipeInfo,
-      image: recipeInfo.image.path,
-    });
+    const recipe = await recipeServices.updateRecipe(req.params.id, recipeInfo);
     res.status(200).json(recipe);
   } catch (e) {
     res.status(500).json({ error: e.message });

@@ -22,8 +22,7 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String,
-      default:
-        "https://st2.depositphotos.com/2071131/11354/i/450/depositphotos_113542824-stock-photo-small-green-leaves.jpg",
+      default: "https://st2.depositphotos.com/2071131/11354/i/450/depositphotos_113542824-stock-photo-small-green-leaves.jpg",
     },
     gender: String,
     age: Number,
@@ -64,26 +63,26 @@ const userSchema = new Schema(
     },
     heart: { type: Number, default: 0 },
     height: { type: Number, default: 0 },
-    weight: { 
+    weight: {
       weight: { type: Number, default: 0 },
       goals: { type: Number, default: 0 },
-     },
+    },
     water: {
       water: { type: Number, default: 0 },
       coke: { type: Number, default: 0 },
       coffee: { type: Number, default: 0 },
       juice: { type: Number, default: 0 },
       goals: {
-        water: { type: Number, default: 8 },
+        water: { type: Number, default: 3000 },
         coke: { type: Number, default: 0 },
         coffee: { type: Number, default: 0 },
         juice: { type: Number, default: 0 },
       },
     },
-    steps: { 
+    steps: {
       steps: { type: Number, default: 0 },
       goals: { type: Number, default: 1000 },
-     },
+    },
     rewards: {
       points: {
         type: Number,

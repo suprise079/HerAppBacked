@@ -35,7 +35,7 @@ exports.updateUser = async (req, res) => {
   try {
     const userInfo = req.body;
     const user = await userService.updateUser(req.params.id, userInfo);
-    res.status(200).json(user);
+    res.status(204).json(user);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -44,7 +44,7 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   try {
     const user = await userService.deleteUser(req.params.id);
-    res.status(200).json(user);
+    res.status(204).json(user);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
