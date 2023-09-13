@@ -22,10 +22,13 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String,
-      default: "https://st2.depositphotos.com/2071131/11354/i/450/depositphotos_113542824-stock-photo-small-green-leaves.jpg",
+      default:
+        "https://st2.depositphotos.com/2071131/11354/i/450/depositphotos_113542824-stock-photo-small-green-leaves.jpg",
     },
     gender: String,
     age: Number,
+    profession: String,
+    dateOfBirth: String,
     bio: {
       type: String,
       default: "I am a new user",

@@ -4,12 +4,15 @@ const Schema = mongoose.Schema;
 module.exports = mongoose.model(
   "Events",
   new Schema({
-    title: String,
-    content: String,
-    author: String,
+    title: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    description: String,
     image: String,
-    category: String,
-    Likes: Number,
+    location: String,
+    date: String,
     createdAt: {
       type: Date,
       default: Date.now,

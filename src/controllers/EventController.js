@@ -35,7 +35,7 @@ exports.getEventById = async (req, res) => {
 exports.updateEvent = async (req, res) => {
   try {
     const eventInfo = req.body;
-    const event = await eventServices.updateEvent(req.params.id, { ...eventInfo, image: eventInfo.image.path });
+    const event = await eventServices.updateEvent(req.params.id, eventInfo);
     res.status(200).json(event);
   } catch (e) {
     res.status(500).json({ error: e.message });

@@ -37,6 +37,7 @@ exports.updateUser = async (req, res) => {
     const user = await userService.updateUser(req.params.id, userInfo);
     res.status(204).json(user);
   } catch (e) {
+    console.log("error occured while updating user: " + e);
     res.status(500).json({ error: e.message });
   }
 };

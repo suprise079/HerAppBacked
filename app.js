@@ -6,6 +6,8 @@ const recipesRouter = require("./src/routes/RecipesRoutes");
 const excerciseRouter = require("./src/routes/ExcerciseRoutes");
 const bmiRoutes = require("./src/routes/BmiRoutes");
 const waterRoutes = require("./src/routes/WaterRoutes");
+const eventsRoutes = require("./src/routes/EventRoutes");
+
 const bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
@@ -19,6 +21,7 @@ app.use("/recipes", recipesRouter);
 app.use("/excercises", excerciseRouter);
 app.use("/BMI", bmiRoutes);
 app.use("/water", waterRoutes);
+app.use("/events", eventsRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

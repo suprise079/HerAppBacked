@@ -14,10 +14,7 @@ exports.createBlog = async (req, res) => {
   try {
     const blogInfo = req.body;
     // let result = await uploadImage(blogInfo.image.path);
-    const blog = await blogServices.createBlog({
-      ...blogInfo,
-      image: blogInfo.image.path,
-    });
+    const blog = await blogServices.createBlog(blogInfo);
     res.status(201).json(blog);
   } catch (e) {
     res.status(500).json({ Error: e.message });
@@ -36,7 +33,7 @@ exports.getBlogById = async (req, res) => {
 exports.updateBlog = async (req, res) => {
   try {
     const blogInfo = req.body;
-    const blog = await blogServices.updateBlog(req.params.id, { ...blogInfo, image: blogInfo.image.path });
+    const blog = await blogServices.updateBlog(req.params.id, blogInfo);
     res.status(200).json(blog);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -68,4 +65,4 @@ exports.searchBlog = async (req, res) => {
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
-}
+};
