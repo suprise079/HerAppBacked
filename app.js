@@ -1,13 +1,13 @@
 const express = require("express");
-const { ConnectDB } = require("./src/databases/mangoDB");
-const userRouter = require("./src/routes/UserRoutes");
-const blogRouter = require("./src/routes/BlogRoutes");
-const recipesRouter = require("./src/routes/RecipesRoutes");
-const excerciseRouter = require("./src/routes/ExcerciseRoutes");
-const bmiRoutes = require("./src/routes/BmiRoutes");
-const waterRoutes = require("./src/routes/WaterRoutes");
-const eventsRoutes = require("./src/routes/EventRoutes");
-const excerciseTrackingRoutes = require("./src/routes/ExcerciseTrackingRoutes");
+const { ConnectDB } = require("./databases/mangoDB");
+const userRouter = require("./src/user/UserRoutes");
+const blogRouter = require("./src/blog/BlogRoutes");
+const recipesRouter = require("./src/recipe/RecipesRoutes");
+const excerciseRouter = require("./src/exercise/ExcerciseRoutes");
+const bmiRoutes = require("./src/bmi/BmiRoutes");
+const waterRoutes = require("./src/water/WaterRoutes");
+const eventsRoutes = require("./src/event/EventRoutes");
+const excerciseTrackingRoutes = require("./src/exercise/ExcerciseTrackingRoutes");
 
 const bodyParser = require("body-parser");
 const app = express();
