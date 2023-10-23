@@ -8,6 +8,7 @@ const bmiRoutes = require("./src/bmi/BmiRoutes");
 const waterRoutes = require("./src/water/WaterRoutes");
 const eventsRoutes = require("./src/event/EventRoutes");
 const excerciseTrackingRoutes = require("./src/exercise/ExcerciseTrackingRoutes");
+const cartRouter = require("./src/shoppingList/CartRoutes");
 
 const bodyParser = require("body-parser");
 const app = express();
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use("/user", userRouter);
 app.use("/blog", blogRouter);
 app.use("/recipes", recipesRouter);
+app.use("/cart", cartRouter);
 app.use("/excercises", excerciseRouter);
 app.use("/BMI", bmiRoutes);
 app.use("/water", waterRoutes);
