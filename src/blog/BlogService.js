@@ -20,8 +20,12 @@ exports.deleteBlog = async (id) => {
 };
 
 exports.getBlogByCategory = async (category) => {
-  category = category.toLowerCase();
   return await BlogModel.find({ category: category });
+};
+
+//Get recommended blogs [Will have it's own table and algorithm]
+exports.getRecommendedBlogs = async () => {
+  return await BlogModel.aggregate([{ $sample: { size: 10 } }]);
 };
 
 exports.searchBlog = async (keyword) => {

@@ -8,11 +8,12 @@ const {
   deleteRecipe,
   getRecipeByCategory,
   searchRecipe,
+  getAdditionalRecipes,
 } = require("./RecipesController.js");
 
 router.route("/").get(getAllRecipes).post(createRecipe);
 router.route("/:id").get(getRecipeById).put(updateRecipe).delete(deleteRecipe);
 router.route("/category/:category").get(getRecipeByCategory);
-router.route("/search/:keyword").get(searchRecipe);
+router.route("/search/:keyword").get(getAdditionalRecipes);
 
 module.exports = router;

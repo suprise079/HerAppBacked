@@ -13,7 +13,7 @@ module.exports = mongoose.model(
     time: Number,
     description: {
       type: String,
-      unique: true,
+      unique: false,
     },
     workouts: [],
   })

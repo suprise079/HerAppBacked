@@ -8,14 +8,22 @@ module.exports = mongoose.model(
       type: String,
       required: true,
       unique: true,
-    },
-    author: String,
-    image: String,
+    }, //
+    image: String, //
+    source: String, //
+    serving: String, //
     description: String,
-    calories: Number,
-    category: String,
-    ingredients: [],
+    videoSource: String, //
+    videoLink: String, //
+    calories: Number, //
+    allergies: [],
+    ingredients: [],  //
     preparation: [],
+    dietLabels: [],  //
+    healthLabels: [],  //
+    mealType: [],
+    nutrients: [],
+    displayIngredients: [],  //
     time: String,
     foodType: String,
     images: [],

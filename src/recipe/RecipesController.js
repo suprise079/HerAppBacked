@@ -1,8 +1,24 @@
+// const { create } = require("./Recipes copy.js");
 const recipeServices = require("./RecipesService.js");
 
 exports.getAllRecipes = async (req, res) => {
   try {
     const recipes = await recipeServices.getAllRecipes();
+    res.status(200).json(recipes);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+};
+
+exports.getAdditionalRecipes = async (req, res) => {
+  try {
+    // request data from recipe api
+    let res = await recipeServices.getAdditionalRecipes(req.params.keyword);
+    //Pass data to duplicate funtion to save data in mangoDB
+    
+    //function to call get recipe from mangoDB
+
+    await this.createRecipe(recipe);
     res.status(200).json(recipes);
   } catch (e) {
     res.status(500).json({ error: e.message });

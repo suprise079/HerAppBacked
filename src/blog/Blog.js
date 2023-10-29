@@ -14,6 +14,7 @@ module.exports = mongoose.model(
     authorImage: String,
     image: String,
     category: String,
+    Tags:[],
     likes: Number,
     time: Number,
     createdAt: {

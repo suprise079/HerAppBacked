@@ -49,9 +49,15 @@ exports.deleteBlog = async (req, res) => {
 };
 
 exports.getBlogByCategory = async (req, res) => {
+  const category = req.params.category;
   try {
-    const blogs = await blogServices.getBlogByCategory(req.params.category);
-    res.status(200).json(blogs);
+    if (category === "Recommended") {
+      const blogs = await blogServices.getRecommendedBlogs();
+      res.status(200).json(blogs);
+    } else {
+      const blogs = await blogServices.getBlogByCategory(category);
+      res.status(200).json(blogs);
+    }
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
