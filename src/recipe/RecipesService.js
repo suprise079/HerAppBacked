@@ -1,4 +1,5 @@
 const RecipesModel = require("./Recipes");
+const RecipeActivityModel = require("./RecipeActivity");
 const axios = require("axios");
 
 exports.getAllRecipes = async () => {
@@ -55,7 +56,6 @@ exports.searchRecipe = async (keyword) => {
     ],
   });
 };
-
 
 //Return the next link from the api
 exports.duplicateApiData= async (res) => {

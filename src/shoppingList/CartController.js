@@ -65,3 +65,32 @@ exports.searchCart = async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 };
+
+exports.addItemToCart = async (req, res) => {
+  try {
+    const itemInfo = req.body;
+    const item = await cartServices.addItemToCart(itemInfo);
+    res.status(201).json(item);
+  } catch (e) {
+    res.status(500).json({ Error: e.message });
+  }
+};
+
+exports.getCartItems = async (req, res) => {
+  try {
+    const items = await cartServices.getCartItems(req.params.id);
+    res.status(200).json(items);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+};
+
+exports.updateItemInCart = async (req, res) => {
+  try {
+    const itemInfo = req.body;
+    const item = await cartServices.updateItemInCart(req.params.id, itemInfo);
+    res.status(200).json(item);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+};

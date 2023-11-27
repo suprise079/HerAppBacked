@@ -23,6 +23,5 @@ module.exports = mongoose.model(
       type: Number,
       default: 0,
     },
-    list: [],
   })
 );

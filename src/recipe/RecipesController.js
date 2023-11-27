@@ -15,7 +15,7 @@ exports.getAdditionalRecipes = async (req, res) => {
     // request data from recipe api
     let res = await recipeServices.getAdditionalRecipes(req.params.keyword);
     //Pass data to duplicate funtion to save data in mangoDB
-    
+
     //function to call get recipe from mangoDB
 
     await this.createRecipe(recipe);

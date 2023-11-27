@@ -7,10 +7,10 @@ const excerciseRouter = require("./src/exercise/ExcerciseRoutes");
 const bmiRoutes = require("./src/bmi/BmiRoutes");
 const waterRoutes = require("./src/water/WaterRoutes");
 const eventsRoutes = require("./src/event/EventRoutes");
-const excerciseTrackingRoutes = require("./src/exercise/ExcerciseTrackingRoutes");
 const cartRouter = require("./src/shoppingList/CartRoutes");
-
+const activityRoutes = require("./src/activity/ActivityRoutes");
 const bodyParser = require("body-parser");
+
 const app = express();
 const port = 3000;
 
@@ -25,7 +25,7 @@ app.use("/excercises", excerciseRouter);
 app.use("/BMI", bmiRoutes);
 app.use("/water", waterRoutes);
 app.use("/events", eventsRoutes);
-app.use("/excerciseTracking", excerciseTrackingRoutes);
+app.use("/activity", activityRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

@@ -1,36 +1,35 @@
 const CartsModel = require("./Cart.js");
+const CartItemsModel = require("./cartItems.js");
 
 exports.getAllUserCarts = async (userId) => {
   console.log("userId: ", userId);
   return await CartsModel.find({ $or: [{ userId: { $regex: userId, $options: "i" } }] });
 };
 
-const cartUpdateHandler = (isNew, ingredients) => {
-  let cart = isNew ? ingredients : {};
-
-  ingredients = isNew ? ingredients.list : ingredients;
-  console.log("ingredients: ", ingredients);
-  cart.count = ingredients.length;
-  cart.completed = ingredients.reduce((acc, curr) => (curr.isPurchased ? acc + 1 : acc), 0);
-  cart.outstanding = ingredients.length - cart.completed;
-  cart.list = ingredients;
-  return cart;
+exports.createCart = async (cartInfo) => {
+  return await CartsModel.create(cartInfo);
 };
 
-exports.createCart = async (recipes) => {
-  let newData = cartUpdateHandler(true, recipes);
-  return await CartsModel.create(recipes);
-};
-exports.getCartById = async (id) => {
-  return await CartsModel.findById(id);
+exports.getCarts = async (userId) => {
+  return await CartsModel.find({ userId: userId });
 };
 
-exports.updateCart = async (id, ingredients) => {
-  let newData = cartUpdateHandler(false, ingredients);
-  console.log("newData: ", newData);
-  return await CartsModel.findByIdAndUpdate(id, newData);
+exports.updateCart = async (id, cartInfo) => {
+  return await CartsModel.findByIdAndUpdate(id, cartInfo);
 };
 
 exports.deleteCart = async (id) => {
   return await CartsModel.findByIdAndDelete(id);
+};
+
+exports.addItemToCart = async (iteminfo) => {
+  return await CartItemsModel.create(iteminfo);
+};
+
+exports.getCartItems = async (userId) => {
+  return await CartItemsModel.find({ userId: userId });
+};
+
+exports.updateItemInCart = async (id, itemInfo) => {
+  return await CartItemsModel.findByIdAndUpdate(id, itemInfo);
 };

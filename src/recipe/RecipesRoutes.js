@@ -9,6 +9,8 @@ const {
   getRecipeByCategory,
   searchRecipe,
   getAdditionalRecipes,
+  getActivityByUser,
+  recordActivity,
 } = require("./RecipesController.js");
 
 router.route("/").get(getAllRecipes).post(createRecipe);

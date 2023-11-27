@@ -23,8 +23,10 @@ exports.getUserAuth = async (req, res) => {
   try {
     let email = req.body.email;
     let password = req.body.password;
-
+    console.log("email: " + email);
+    console.log("password: " + password);
     const user = await userService.getUserAuth(email, password);
+    console.log("user: " + user);
     res.status(200).json(user);
   } catch (e) {
     res.status(500).json({ error: e.message });
