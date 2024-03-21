@@ -27,6 +27,8 @@ app.use("/water", waterRoutes);
 app.use("/events", eventsRoutes);
 app.use("/activity", activityRoutes);
 
+app.use("/", (req, res) => res.json({ status: "UP" }));
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
