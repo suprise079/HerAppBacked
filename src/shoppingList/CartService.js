@@ -27,7 +27,7 @@ exports.addItemToCart = async (iteminfo) => {
 };
 
 exports.getCartItems = async (userId) => {
-  return await CartItemsModel.find({ userId: userId });
+  return await CartItemsModel.find({ userId: userId, isDeleted: false });
 };
 
 exports.updateItemInCart = async (id, itemInfo) => {

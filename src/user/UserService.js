@@ -9,6 +9,8 @@ exports.createUser = async (userInfo) => {
 };
 
 exports.getUserAuth = async (username, password) => {
+  let users = await UserModel.find();
+  // console.log("users: " + users);
   return await UserModel.findOne({ email: username, password: password });
 };
 

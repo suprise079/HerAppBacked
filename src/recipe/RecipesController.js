@@ -13,14 +13,14 @@ exports.getAllRecipes = async (req, res) => {
 exports.getAdditionalRecipes = async (req, res) => {
   try {
     // request data from recipe api
-    let res = await recipeServices.getAdditionalRecipes(req.params.keyword);
+    let recipe = await recipeServices.searchRecipe(req.params.keyword);
     //Pass data to duplicate funtion to save data in mangoDB
 
     //function to call get recipe from mangoDB
-
-    await this.createRecipe(recipe);
-    res.status(200).json(recipes);
+    console.log("recipe: " + recipe);
+    res.status(200).json(recipe);
   } catch (e) {
+    console.log("Error: " + e);
     res.status(500).json({ error: e.message });
   }
 };
