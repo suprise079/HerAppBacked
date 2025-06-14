@@ -1,8 +1,8 @@
-import { createClient } from "@supabase/supabase-js";
+const { createClient } = require("@supabase/supabase-js");
 
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+exports.supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 
-const authenticateUser = async (req, res, next) => {
+exports.authenticateUser = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
 
   if (!authHeader) return res.status(401).json({ message: "Authorization header is missing" });
@@ -21,5 +21,3 @@ const authenticateUser = async (req, res, next) => {
   req.user = user.identities[0]; // Attach user to request
   next();
 };
-
-export default authenticateUser;

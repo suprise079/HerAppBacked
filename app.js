@@ -10,7 +10,7 @@ const eventsRoutes = require("./src/event/EventRoutes");
 const cartRouter = require("./src/shoppingList/CartRoutes");
 const activityRoutes = require("./src/activity/ActivityRoutes");
 const bodyParser = require("body-parser");
-const { default: authenticateUser } = require("./middleware/authMiddleware");
+const { authenticateUser } = require("./middleware/authMiddleware");
 const { createUserController, getUserController } = require("./src/user/UserController");
 
 const app = express();
