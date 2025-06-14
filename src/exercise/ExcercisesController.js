@@ -1,6 +1,7 @@
 const ExcerciseServices = require("./ExcerciseService.js");
 
 exports.getAllExcercises = async (req, res) => {
+  console.log("Received request to get all excercises");
   try {
     const ExcercisesList = await ExcerciseServices.getAllExcercises();
     res.status(200).json(ExcercisesList);
@@ -65,7 +66,7 @@ exports.updateProgress = async (req, res) => {
     let excerciseId = req.body.excerciseId;
     let progress = req.body.progress;
     const progressRes = await ExcerciseServices.updateExcerciseProgress(userId, excerciseId, progress);
-    res.status(200).json(progressRes);
+    res.status(204).json(progressRes);
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

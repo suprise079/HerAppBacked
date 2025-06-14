@@ -10,6 +10,8 @@ const eventsRoutes = require("./src/event/EventRoutes");
 const cartRouter = require("./src/shoppingList/CartRoutes");
 const activityRoutes = require("./src/activity/ActivityRoutes");
 const bodyParser = require("body-parser");
+const { default: authenticateUser } = require("./middleware/authMiddleware");
+const { createUserController, getUserController } = require("./src/user/UserController");
 
 const app = express();
 const port = 3000;
@@ -17,17 +19,26 @@ const port = 3000;
 ConnectDB();
 
 app.use(bodyParser.json());
-app.use("/user", userRouter);
+
+// ----- public routes -----
+app.post("/user/create", (req, res) => createUserController(req, res));
+
+// ----- private routes -----
+app.use("/user", authenticateUser, userRouter);
 app.use("/blog", blogRouter);
 app.use("/recipes", recipesRouter);
-app.use("/cart", cartRouter);
-app.use("/excercises", excerciseRouter);
+app.use("/cart", authenticateUser, cartRouter);
+app.use("/excercises", authenticateUser, excerciseRouter);
 app.use("/BMI", bmiRoutes);
 app.use("/water", waterRoutes);
 app.use("/events", eventsRoutes);
 app.use("/activity", activityRoutes);
 
-app.use("/", (req, res) => res.json({ status: "UP" }));
+app.use("/", (req, res) => {
+  console.log("Received request at root endpoint..");
+  console.log("Request headers:", req.headers);
+  res.json({ status: "UP" });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

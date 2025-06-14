@@ -4,14 +4,12 @@ exports.getUser = async (id) => {
   return await UserModel.findById(id);
 };
 
-exports.createUser = async (userInfo) => {
+exports.createUserService = async (userInfo) => {
   return await UserModel.create(userInfo);
 };
 
-exports.getUserAuth = async (username, password) => {
-  let users = await UserModel.find();
-  // console.log("users: " + users);
-  return await UserModel.findOne({ email: username, password: password });
+exports.getUserService = async (id) => {
+  return await UserModel.findOne({ id });
 };
 
 exports.updateUser = (id, userInfo) => {

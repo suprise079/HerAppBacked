@@ -2,7 +2,7 @@ const cartServices = require("./CartService.js");
 
 exports.getAllUserCarts = async (req, res) => {
   try {
-    const carts = await cartServices.getAllUserCarts(req.params.id);
+    const carts = await cartServices.getAllUserCarts(req.user.id);
     res.status(200).json(carts);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -69,16 +69,20 @@ exports.searchCart = async (req, res) => {
 exports.addItemToCart = async (req, res) => {
   try {
     const itemInfo = req.body;
-    const item = await cartServices.addItemToCart(itemInfo);
+    const userId = req.user.id;
+    const item = await cartServices.addItemToCart({ ...itemInfo, userId });
     res.status(201).json(item);
   } catch (e) {
+    console.error("Error adding item to cart:", e);
     res.status(500).json({ Error: e.message });
   }
 };
 
 exports.getCartItems = async (req, res) => {
   try {
-    const items = await cartServices.getCartItems(req.params.id);
+    console.log("received request to get cart items for user:", req.user.id);
+    const items = await cartServices.getCartItems(req.user.id);
+    console.log("Retrieved cart items:", items);
     res.status(200).json(items);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -87,10 +91,12 @@ exports.getCartItems = async (req, res) => {
 
 exports.updateItemInCart = async (req, res) => {
   try {
+    console.log("received request to update item in cart:", req.body);
     const itemInfo = req.body;
-    const item = await cartServices.updateItemInCart(req.params.id, itemInfo);
-    res.status(200).json(item);
+    const item = await cartServices.updateItemInCart(req.body._id, itemInfo);
+    res.status(201).json(item);
   } catch (e) {
+    console.log("Error ocuured" + e.message);
     res.status(500).json({ error: e.message });
   }
 };
