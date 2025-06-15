@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const { createUserService, getUserService } = require("./UserService");
 
 exports.getUserById = async (req, res) => {
@@ -14,7 +15,7 @@ exports.createUserController = async (req, res) => {
     const userInfo = req.body;
     const user = await createUserService(userInfo);
 
-    res.status(201).json({ message: "User created successfully!\nPlease confirm your email to continue..." });
+    res.status(201).json({ message: "User created successfully!\nPlease confirm your email to continue!" });
   } catch (e) {
     if (e instanceof mongoose.Error.ValidationError) {
       const messages = Object.values(e.errors).map((err) => err.message);

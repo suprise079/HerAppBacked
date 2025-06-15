@@ -1,6 +1,6 @@
 const { createClient } = require("@supabase/supabase-js");
 
-exports.supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 
 exports.authenticateUser = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
