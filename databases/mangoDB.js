@@ -17,21 +17,21 @@ const client = new MongoClient(uri, {
 });
 
 const ConnectDB = async () => {
-  //configure mongoose
-  mongoose
-    .connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
-    .then(() => console.log("Connected to Mongoose Atlas!"))
-    .catch((err) => console.log("Error connecting to Mongoose Atlas: " + err));
+  try {
+    await mongoose.connect(uri);
+    console.log("Connected to Mongoose Atlas!");
+  } catch (err) {
+    console.error("Error connecting to Mongoose Atlas:", err.message);
+    process.exit(1);
+  }
 
   try {
-    await client.connect().then(console.log("Connected to MongoDB Atlas!"));
+    await client.connect();
+    console.log("Connected to MongoDB Atlas!!!");
     client.db("test");
     return client;
   } catch (e) {
-    console.error("error connecting database: " + e);
+    console.error("Error connecting to MongoDB native client:", e.message);
   }
 };
 
