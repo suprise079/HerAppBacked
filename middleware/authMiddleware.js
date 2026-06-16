@@ -3,6 +3,11 @@ const { createClient } = require("@supabase/supabase-js");
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 
 exports.authenticateUser = async (req, res, next) => {
+  if (process.env.MOCK_MODE === "true") {
+    req.user = { id: "mock-user-001", email: "demo@herapp.com" };
+    return next();
+  }
+
   const authHeader = req.headers["authorization"];
 
   if (!authHeader) return res.status(401).json({ message: "Authorization header is missing" });

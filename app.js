@@ -16,29 +16,34 @@ const { createUserController, getUserController } = require("./src/user/UserCont
 const app = express();
 const port = 3000;
 
-ConnectDB();
-
 app.use(bodyParser.json());
 
-// ----- public routes -----
-app.post("/user/create", (req, res) => createUserController(req, res));
+if (process.env.MOCK_MODE === "true") {
+  console.log("Starting in mock mode — all routes served with dummy data.");
+  app.use("/", require("./src/mock/mockRouter"));
+} else {
+  ConnectDB();
 
-// ----- private routes -----
-app.use("/user", authenticateUser, userRouter);
-app.use("/blog", blogRouter);
-app.use("/recipes", recipesRouter);
-app.use("/cart", authenticateUser, cartRouter);
-app.use("/excercises", authenticateUser, excerciseRouter);
-app.use("/BMI", bmiRoutes);
-app.use("/water", waterRoutes);
-app.use("/events", eventsRoutes);
-app.use("/activity", activityRoutes);
+  // ----- public routes -----
+  app.post("/user/create", (req, res) => createUserController(req, res));
 
-app.use("/", (req, res) => {
-  console.log("Received request at root endpoint..");
-  console.log("Request headers:", req.headers);
-  res.json({ status: "UP" });
-});
+  // ----- private routes -----
+  app.use("/user", authenticateUser, userRouter);
+  app.use("/blog", blogRouter);
+  app.use("/recipes", recipesRouter);
+  app.use("/cart", authenticateUser, cartRouter);
+  app.use("/excercises", authenticateUser, excerciseRouter);
+  app.use("/BMI", bmiRoutes);
+  app.use("/water", waterRoutes);
+  app.use("/events", eventsRoutes);
+  app.use("/activity", activityRoutes);
+
+  app.use("/", (req, res) => {
+    console.log("Received request at root endpoint..");
+    console.log("Request headers:", req.headers);
+    res.json({ status: "UP" });
+  });
+}
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
