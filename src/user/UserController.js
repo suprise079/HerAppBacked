@@ -41,6 +41,7 @@ exports.getUserController = async (req, res) => {
     const user = await getUserService(id);
     res.status(200).json(user);
   } catch (e) {
+    console.error("Error in getUserController:", e);
     res.status(500).json({ error: e.message });
   }
 };

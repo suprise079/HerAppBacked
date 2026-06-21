@@ -1,6 +1,9 @@
 const { createClient } = require("@supabase/supabase-js");
+const ws = require("ws");
 
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY, {
+  realtime: { transport: ws },
+});
 
 exports.authenticateUser = async (req, res, next) => {
   if (process.env.MOCK_MODE === "true") {
