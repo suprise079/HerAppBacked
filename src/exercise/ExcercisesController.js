@@ -51,7 +51,7 @@ exports.deleteExcercise = async (req, res) => {
 
 exports.getProgress = async (req, res) => {
   try {
-    let userId = req.params.userId;
+    const userId = req.user.id;
     const progress = await ExcerciseServices.getExcerciseProgress(userId);
     res.status(200).json(progress);
   } catch (e) {
@@ -62,7 +62,7 @@ exports.getProgress = async (req, res) => {
 exports.updateProgress = async (req, res) => {
   try {
     console.log("received request to update progress:" + req.body);
-    let userId = req.body.userId;
+    const userId = req.user.id;
     let excerciseId = req.body.excerciseId;
     let progress = req.body.progress;
     const progressRes = await ExcerciseServices.updateExcerciseProgress(userId, excerciseId, progress);

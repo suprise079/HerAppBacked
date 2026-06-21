@@ -13,7 +13,7 @@ exports.getUserService = async (id) => {
 };
 
 exports.updateUser = (id, userInfo) => {
-  return UserModel.findByIdAndUpdate(id, userInfo);
+  return UserModel.findOneAndUpdate({ id }, { $set: userInfo }, { new: true });
 };
 
 exports.deleteUser = (id) => {

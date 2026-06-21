@@ -1,5 +1,5 @@
 const { default: mongoose } = require("mongoose");
-const { createUserService, getUserService } = require("./UserService");
+const { createUserService, getUserService, updateUser } = require("./UserService");
 
 exports.getUserById = async (req, res) => {
   try {
@@ -42,6 +42,18 @@ exports.getUserController = async (req, res) => {
     res.status(200).json(user);
   } catch (e) {
     console.error("Error in getUserController:", e);
+    res.status(500).json({ error: e.message });
+  }
+};
+
+exports.updateUserController = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const updated = await updateUser(userId, req.body);
+    if (!updated) return res.status(404).json({ error: "User not found" });
+    res.status(200).json(updated);
+  } catch (e) {
+    console.error("Error in updateUserController:", e);
     res.status(500).json({ error: e.message });
   }
 };

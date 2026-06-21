@@ -21,9 +21,11 @@ app.use(bodyParser.json());
 if (process.env.MOCK_MODE === "true") {
   console.log("Starting in mock mode — all routes served with dummy data.");
   app.use("/", require("./src/mock/mockRouter"));
-} else {
-  ConnectDB();
 
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+  });
+} else {
   // ----- public routes -----
   app.post("/user/create", (req, res) => createUserController(req, res));
 
@@ -43,10 +45,12 @@ if (process.env.MOCK_MODE === "true") {
     console.log("Request headers:", req.headers);
     res.json({ status: "UP" });
   });
-}
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+  ConnectDB().then(() => {
+    app.listen(port, () => {
+      console.log(`Example app listening at http://localhost:${port}`);
+    });
+  });
+}
 
 module.exports = app;

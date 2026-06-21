@@ -1,20 +1,30 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
 const mongoose = require("mongoose");
 const { config } = require("dotenv");
-const dns = require('dns');
+const dns = require("dns");
 
 config();
+dns.setDefaultResultOrder("ipv4first");
+
 const uri = process.env.DB_URI;
 
-dns.setDefaultResultOrder('ipv4first');
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: false,
-    deprecationErrors: true,
-  },
-});
+// Log the host only — never log the full URI (contains password)
+const getHost = (connectionUri) => {
+  try {
+    return new URL(connectionUri).host;
+  } catch {
+    return "<invalid URI>";
+  }
+};
+
+mongoose.connection.on("disconnected", () =>
+  console.warn("MongoDB: disconnected")
+);
+mongoose.connection.on("reconnected", () =>
+  console.log("MongoDB: reconnected")
+);
+mongoose.connection.on("error", (err) =>
+  console.error("MongoDB connection error:", err.message)
+);
 
 const ConnectDB = async () => {
   if (process.env.MOCK_MODE === "true") {
@@ -22,21 +32,14 @@ const ConnectDB = async () => {
     return;
   }
 
-  try {
-    await mongoose.connect(uri);
-    console.log("Connected to Mongoose Atlas!");
-  } catch (err) {
-    console.error("Error connecting to Mongoose Atlas:", err.message);
-    // process.exit(1);
-  }
+  console.log(`Connecting to MongoDB host: ${getHost(uri)}`);
 
   try {
-    await client.connect();
-    console.log("Connected to MongoDB Atlas!!!");
-    client.db("test");
-    return client;
-  } catch (e) {
-    console.error("Error connecting to MongoDB native client:", e.message);
+    await mongoose.connect(uri);
+    console.log("Connected to MongoDB Atlas!");
+  } catch (err) {
+    console.error("Failed to connect to MongoDB Atlas:", err.message);
+    process.exit(1);
   }
 };
 
