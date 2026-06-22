@@ -91,12 +91,9 @@ exports.getCartItems = async (req, res) => {
 
 exports.updateItemInCart = async (req, res) => {
   try {
-    console.log("received request to update item in cart:", req.body);
-    const itemInfo = req.body;
-    const item = await cartServices.updateItemInCart(req.body._id, itemInfo);
-    res.status(201).json(item);
+    const item = await cartServices.updateItemInCart(req.params.id, req.body);
+    res.status(200).json(item);
   } catch (e) {
-    console.log("Error ocuured" + e.message);
     res.status(500).json({ error: e.message });
   }
 };

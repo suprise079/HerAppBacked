@@ -1,7 +1,7 @@
 const express = require("express");
-const { getBmiSummary } = require("./BmiController");
+const { getBmiSummary, updateBmi } = require("./BmiController");
 const router = express.Router();
 
-router.route("/:id").get(getBmiSummary);
+router.route("/:id").get(getBmiSummary).put(updateBmi);
 
 module.exports = router;

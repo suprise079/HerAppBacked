@@ -9,6 +9,7 @@ const waterRoutes = require("./src/water/WaterRoutes");
 const eventsRoutes = require("./src/event/EventRoutes");
 const cartRouter = require("./src/shoppingList/CartRoutes");
 const activityRoutes = require("./src/activity/ActivityRoutes");
+const mealPlanRouter = require("./src/mealPlan/MealPlanRoutes");
 const bodyParser = require("body-parser");
 const { authenticateUser } = require("./middleware/authMiddleware");
 const { createUserController, getUserController } = require("./src/user/UserController");
@@ -34,6 +35,7 @@ if (process.env.MOCK_MODE === "true") {
   app.use("/blog", blogRouter);
   app.use("/recipes", recipesRouter);
   app.use("/cart", authenticateUser, cartRouter);
+  app.use("/mealPlan", authenticateUser, mealPlanRouter);
   app.use("/excercises", authenticateUser, excerciseRouter);
   app.use("/BMI", bmiRoutes);
   app.use("/water", waterRoutes);
@@ -42,7 +44,6 @@ if (process.env.MOCK_MODE === "true") {
 
   app.use("/", (req, res) => {
     console.log("Received request at root endpoint..");
-    console.log("Request headers:", req.headers);
     res.json({ status: "UP" });
   });
 

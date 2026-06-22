@@ -10,6 +10,7 @@ module.exports = mongoose.model(
       unique: true,
     },
     image: String,
+    videoLink: String,
     time: Number,
     description: {
       type: String,

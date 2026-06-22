@@ -17,7 +17,6 @@ exports.getAdditionalRecipes = async (req, res) => {
     //Pass data to duplicate funtion to save data in mangoDB
 
     //function to call get recipe from mangoDB
-    console.log("recipe: " + recipe);
     res.status(200).json(recipe);
   } catch (e) {
     console.log("Error: " + e);

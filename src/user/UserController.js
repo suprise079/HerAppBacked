@@ -48,12 +48,21 @@ exports.getUserController = async (req, res) => {
 
 exports.updateUserController = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.user?.id;
+    console.log("[updateUserController] userId from token:", userId);
+    console.log("[updateUserController] body:", JSON.stringify(req.body).slice(0, 300));
+
+    if (!userId) {
+      console.error("[updateUserController] No userId on req.user:", req.user);
+      return res.status(401).json({ error: "Missing user ID from token" });
+    }
+
     const updated = await updateUser(userId, req.body);
+    console.log("[updateUserController] result:", updated ? "found & updated" : "USER NOT FOUND");
     if (!updated) return res.status(404).json({ error: "User not found" });
     res.status(200).json(updated);
   } catch (e) {
-    console.error("Error in updateUserController:", e);
+    console.error("[updateUserController] Error:", e.message);
     res.status(500).json({ error: e.message });
   }
 };

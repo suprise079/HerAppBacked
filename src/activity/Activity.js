@@ -7,7 +7,6 @@ module.exports = mongoose.model(
     userId: {
       type: String,
       required: true,
-      unique: true,
     },
     activityId: {
       type: String,

@@ -26,6 +26,6 @@ exports.authenticateUser = async (req, res, next) => {
 
   if (error || !user) return res.status(401).json({ message: "Invalid or expired token" });
 
-  req.user = user.identities[0]; // Attach user to request
+  req.user = { id: user.id, email: user.email }; // Attach user to request
   next();
 };

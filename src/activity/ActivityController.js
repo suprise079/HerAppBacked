@@ -4,7 +4,6 @@ exports.recordActivity = async (req, res) => {
   console.log("Record Activity");
   try {
     const activityInfo = req.body;
-    console.log("passed infor: " + JSON.stringify(activityInfo));
     const activity = await activityService.recordActivity(activityInfo);
     res.status(200).json(activity);
   } catch (e) {

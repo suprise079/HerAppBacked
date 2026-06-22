@@ -40,11 +40,11 @@ exports.updateExcerciseProgress = async (userId, excerciseId, progress) => {
     // if there is no existing progress for this excercise, create a new entry
     return await ExcerciseTracking.findOneAndUpdate(
       { userId },
-      { $push: { excercises: { excerciseId, progress: [progress] } } }
+      { $push: { excercises: { excerciseId, progress } } }
     );
   } else {
     // first time user
-    return await ExcerciseTracking.create({ userId, excercises: [{ excerciseId, progress: [progress] }] });
+    return await ExcerciseTracking.create({ userId, excercises: [{ excerciseId, progress }] });
   }
 };
 

@@ -29,6 +29,18 @@ module.exports = mongoose.model(
         type: String,
         default: "n/a",
       },
+      quantity: {
+        type: Number,
+        default: 1,
+      },
+      unit: {
+        type: String,
+        default: "pcs",
+      },
+      category: {
+        type: String,
+        default: "Other",
+      },
       text: {
         type: String,
         required: true,
