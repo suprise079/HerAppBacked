@@ -1,4 +1,4 @@
-const eventServices = require("../services/NotificationService.js");
+const eventServices = require("./NotificationService.js");
 
 exports.getAllNotifications = async (req, res) => {
   try {

@@ -96,6 +96,14 @@ const userSchema = new Schema(
         default: 0
       },
       badges: [String]
+    },
+    favouriteRecipes: {
+      type: [String],
+      default: []
+    },
+    pushToken: {
+      type: String,
+      default: null
     }
   },
   { timestamps: true }
