@@ -13,16 +13,19 @@ const seedArticles = require('./seedArticles');
 const seedExercises = require('./seedExercises');
 const seedRecipes = require('./seedRecipes');
 
-async function seed() {
+async function runSeed() {
   console.log('=== HER App — Beta Data Seed ===\n');
+  await seedArticles();
+  await seedExercises();
+  await seedRecipes();
+  console.log('=== Seed complete ===');
+}
 
+async function seed() {
   await ConnectDB();
 
   try {
-    await seedArticles();
-    await seedExercises();
-    await seedRecipes();
-    console.log('=== Seed complete ===');
+    await runSeed();
   } catch (err) {
     console.error('\nSeed failed:', err.message);
     process.exitCode = 1;
@@ -31,4 +34,8 @@ async function seed() {
   }
 }
 
-seed();
+if (require.main === module) {
+  seed();
+}
+
+module.exports = { runSeed };

@@ -49,7 +49,16 @@ if (process.env.MOCK_MODE === "true") {
     res.json({ status: "UP" });
   });
 
-  ConnectDB().then(() => {
+  ConnectDB().then(async () => {
+    if (process.env.RUN_SEED === 'true') {
+      const { runSeed } = require('./scripts/seed');
+      try {
+        await runSeed();
+      } catch (err) {
+        console.error('Seed on startup failed:', err.message);
+      }
+    }
+
     app.listen(port, () => {
       console.log(`Example app listening at http://localhost:${port}`);
     });
